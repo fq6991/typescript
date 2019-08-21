@@ -1,22 +1,45 @@
-import * as React from 'react';
-import './App.css';
+import * as React from 'react'
 
-import logo from './logo.svg';
+export interface Props {
+  name: string;
+  enthusiasmLevel?: number
+}
 
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Reacthahaha222</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+// function Hello ({name, enthusiasmLevel = 1}: Props) {
+//   if (enthusiasmLevel < 0) {
+//     throw new Error('You could be a little more enthusiastic. :D');
+//   }
+//   return(
+//     <div className="hello">
+//       <div className="greeting">
+//         Hello { name +  getExclamationMarks(enthusiasmLevel)}
+//       </div>
+//     </div>
+//   )
+// }
+
+
+class Hello extends React.Component<Props, object> {
+  render() {
+    const { name, enthusiasmLevel = 1} = this.props;
+    if (enthusiasmLevel <= 0) {
+      throw new Error('You could be a little more enthusiastic. :D');
+    }
+    return(
+      <div className="hello">
+        <div className="greeting">
+          Hello {name + getExclamationMarks(enthusiasmLevel)}
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+
+
+
+export default Hello;
+
+function getExclamationMarks(numChars: number) {
+  return Array(numChars + 1).join('!')
+}
