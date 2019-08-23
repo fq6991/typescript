@@ -1,45 +1,22 @@
 import * as React from 'react'
+// import Button from 'antd/es/button';
+import './App.css';
+import Box from './components/views/HomePage'
+import Lista from './pages/list'
 
-export interface Props {
-  name: string;
-  enthusiasmLevel?: number
-}
+class App extends React.Component {
 
-// function Hello ({name, enthusiasmLevel = 1}: Props) {
-//   if (enthusiasmLevel < 0) {
-//     throw new Error('You could be a little more enthusiastic. :D');
-//   }
-//   return(
-//     <div className="hello">
-//       <div className="greeting">
-//         Hello { name +  getExclamationMarks(enthusiasmLevel)}
-//       </div>
-//     </div>
-//   )
-// }
+  public myClickHandler(data:string) {
+      console.log(data)
+  }
 
-
-class Hello extends React.Component<Props, object> {
-  render() {
-    const { name, enthusiasmLevel = 1} = this.props;
-    if (enthusiasmLevel <= 0) {
-      throw new Error('You could be a little more enthusiastic. :D');
-    }
-    return(
-      <div className="hello">
-        <div className="greeting">
-          Hello {name + getExclamationMarks(enthusiasmLevel)}
-        </div>
+  public render() {
+    return (
+      <div className="App">
+        <Box title='标题' age = {200} onMyClick = { this.myClickHandler}/>
+        <Lista />
       </div>
-    )
+    );
   }
 }
-
-
-
-
-export default Hello;
-
-function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join('!')
-}
+export default App;
